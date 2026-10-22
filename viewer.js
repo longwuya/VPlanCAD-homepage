@@ -4,8 +4,9 @@
 // first pointer contact moves the single shared WebGL canvas into that tile and
 // hands over orbit controls, so the model can be dragged immediately. Geometry is
 // parsed up front (OBJLoader.parse needs no GPU), which keeps activation
-// synchronous enough for the first touch drag to work. Double-click returns to the
-// default view.
+// synchronous enough for the first touch drag to work. Each tile keeps its own
+// viewing direction and a snapshot when the canvas moves elsewhere. Double-click
+// returns only the active tile to its default view.
 //
 // One WebGL context exists for the whole page: raising a context per tile hits the
 // browser's context budget and drops the oldest ones.
@@ -23,6 +24,7 @@ const MARGIN = 1.03;
 
 const loader = new OBJLoader();
 const parsed = new Map();
+const views = new WeakMap();
 
 let stage = null;
 let active = null;
@@ -68,7 +70,7 @@ function createStage() {
 }
 
 // Distance at which a sphere of `radius` fits inside both view angles.
-function fit() {
+function fit(direction = DIRECTION) {
   if (!stage || !active) return;
   const { camera, radius } = stage;
   const width = active.clientWidth;
@@ -81,7 +83,7 @@ function fit() {
   const distance = (radius / Math.sin(Math.min(vFov, hFov) / 2)) * MARGIN;
 
   camera.aspect = aspect;
-  camera.position.copy(DIRECTION).multiplyScalar(distance);
+  camera.position.copy(direction).normalize().multiplyScalar(distance);
   camera.near = Math.max(distance - radius * 1.8, radius * 0.02);
   camera.far = distance + radius * 4;
   camera.lookAt(0, 0, 0);
@@ -124,6 +126,21 @@ function deactivate({ keep = false } = {}) {
   }
   const tile = active;
   if (stage.model) {
+    // WebGL's drawing buffer may be cleared after compositing, so render and copy
+    // in the same task before moving the shared canvas to another tile.
+    draw();
+    const view = views.get(tile) ?? {};
+    view.direction = stage.camera.position.clone().normalize();
+    if (!view.snapshot) {
+      view.snapshot = document.createElement('canvas');
+      view.snapshot.className = 'viewer-snapshot';
+      view.snapshot.setAttribute('aria-hidden', 'true');
+      tile.appendChild(view.snapshot);
+    }
+    view.snapshot.width = stage.canvas.width;
+    view.snapshot.height = stage.canvas.height;
+    view.snapshot.getContext('2d').drawImage(stage.canvas, 0, 0);
+    views.set(tile, view);
     stage.scene.remove(stage.model);
     stage.model = null;
   }
@@ -149,9 +166,6 @@ function parseModel(url) {
       })
       .then(text => {
         const object = loader.parse(text);
-        object.traverse(child => {
-          if (child.isMesh) child.material = stage.material;
-        });
         const box = new THREE.Box3().setFromObject(object);
         const size = box.getSize(new THREE.Vector3());
         const center = box.getCenter(new THREE.Vector3());
@@ -204,7 +218,6 @@ async function activate(tile, event) {
   }
 
   active = tile;
-  tile.classList.add('is-live');
   tile.appendChild(stage.canvas);
 
   if (!tile.querySelector('.viewer-hint')) {
@@ -227,17 +240,21 @@ async function activate(tile, event) {
   }
   if (active !== tile || mine !== token) return;
 
+  model.object.traverse(child => {
+    if (child.isMesh) child.material = stage.material;
+  });
   stage.scene.add(model.object);
   stage.model = model.object;
   stage.radius = model.radius;
   setStatus(tile, '');
-  fit();
+  fit(views.get(tile)?.direction ?? DIRECTION);
   draw();
+  tile.classList.add('is-live');
 
   if ('ResizeObserver' in window) {
     stage.observer = new ResizeObserver(() => {
       if (active !== tile) return;
-      fit();
+      fit(stage.camera.position.clone().normalize());
       draw();
     });
     stage.observer.observe(tile);

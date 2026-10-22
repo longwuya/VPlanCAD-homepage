@@ -15,7 +15,7 @@ Project website for **VPlanCAD: Learning Parametric CAD Generation from Engineer
 
 The website presents the project abstract, demonstration videos, qualitative comparisons with engineering drawing inputs and interactive CAD models, and ablation figures. The Paper resource is disabled until a verified paper URL is available. Citation information is currently pending.
 
-The model comparisons show 1-view, 3-view, and 4-view input settings. Each model initially appears as a static render; pointer interaction enables a shared 3D viewer, and double-clicking resets the active model's view.
+The model comparisons show 1-view, 3-view, and 4-view input settings. Each model initially appears as a static render; pointer interaction enables a shared 3D viewer. Each model retains its last viewing angle when the pointer moves to another model, and double-clicking resets only the active model's view.
 
 ## Local Preview
 
