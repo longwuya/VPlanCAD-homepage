@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="VPlanCAD: generating editable parametric CAD models from vector engineering drawings through view-wise aggregation, cross-view fusion, and command-level planning.">
+  <title>VPlanCAD</title>
+  <link rel="icon" href="images/hit-logo.png">
+  <link rel="stylesheet" href="fonts/fonts.css?v=1">
+  <link rel="stylesheet" href="style.css?v=3">
+  <script src="page.js?v=3" defer></script>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "./vendor/three.module.js",
+        "three/addons/": "./vendor/addons/"
+      }
+    }
+  </script>
+  <script type="module" src="viewer.js?v=3"></script>
+</head>
+<body>
+  <a class="skip-link" href="#abstract">Abstract</a>
+  <header class="hero">
+    <div class="institution-logos" aria-label="Institutions">
+      <a href="https://en.hit.edu.cn/" target="_blank" rel="noopener noreferrer" aria-label="Harbin Institute of Technology">
+        <img src="images/hit-logo.png" width="1024" height="924" alt="Harbin Institute of Technology logo">
+      </a>
+    </div>
+    <h1>VPlanCAD: Learning Parametric CAD Generation from Engineering Drawings via Cross-View Fusion and Command Planning</h1>
+    <div class="authors">
+      <span><a href="https://homepage.hit.edu.cn/mengwenlong?lang=zh" target="_blank" rel="noopener noreferrer">Wenlong Meng</a><sup>1</sup></span>
+      <span><span class="author-name">Xin Lin</span><sup>1</sup></span>
+      <span><span class="author-name">Chang Gao</span><sup>1</sup></span>
+      <span><span class="author-name">Zihe Qin</span><sup>1</sup></span>
+      <span><span class="author-name">Chenshuo Yang</span><sup>1</sup></span>
+      <span><a href="https://homepage.hit.edu.cn/tzy" target="_blank" rel="noopener noreferrer">Zhiying Tu</a><sup>1</sup></span>
+      <span><a href="https://homepage.hit.edu.cn/chudh" target="_blank" rel="noopener noreferrer">Dianhui Chu</a><sup>1</sup></span>
+    </div>
+    <div class="affiliations">
+      <span><sup>1</sup><a href="https://en.hit.edu.cn/" target="_blank" rel="noopener noreferrer">Harbin Institute of Technology</a></span>
+    </div>
+    <nav class="resources" aria-label="Project resources">
+      <button class="resource-button" type="button" disabled title="The paper link will be added once the manuscript is publicly available">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V8z"/><path d="M14 3v5h5M8.5 12h7M8.5 15.5h7M8.5 18h4"/></svg><span>Paper</span>
+      </button>
+      <a class="resource-button" href="https://youtu.be/_ArdSNKLISI" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2.5" y="4.5" width="19" height="15" rx="4"/><path d="m10 8.5 5.5 3.5-5.5 3.5z" fill="currentColor" stroke="none"/></svg><span>Video</span>
+      </a>
+      <a class="resource-button" href="https://github.com/longwuya/VPlanCAD" target="_blank" rel="noopener noreferrer">
+        <svg class="resource-icon-github" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 .75a11.25 11.25 0 0 0-3.558 21.923c.563.104.768-.244.768-.542 0-.267-.01-.975-.015-1.913-3.13.68-3.79-1.508-3.79-1.508-.512-1.3-1.25-1.646-1.25-1.646-1.022-.7.077-.686.077-.686 1.13.08 1.725 1.16 1.725 1.16 1.005 1.722 2.636 1.225 3.278.937.102-.728.393-1.225.715-1.507-2.498-.285-5.124-1.25-5.124-5.562 0-1.23.44-2.234 1.16-3.022-.116-.285-.503-1.43.11-2.98 0 0 .945-.303 3.094 1.155A10.78 10.78 0 0 1 12 6.18c.956.004 1.918.13 2.817.379 2.148-1.458 3.09-1.155 3.09-1.155.617 1.55.23 2.695.113 2.98.722.788 1.158 1.792 1.158 3.022 0 4.323-2.63 5.274-5.135 5.553.404.35.764 1.042.764 2.1 0 1.518-.014 2.743-.014 3.115 0 .3.202.65.773.54A11.252 11.252 0 0 0 12 .75Z"/></svg><span>Code</span>
+      </a>
+    </nav>
+  </header>
+  <nav class="site-nav" aria-label="Page sections">
+    <div class="site-nav-inner">
+      <div class="site-nav-links">
+        <a class="section-link is-active" href="#abstract" aria-current="location">Abstract</a>
+        <a class="section-link" href="#introduction">Introduction</a>
+        <a class="section-link" href="#results">Results</a>
+        <a class="section-link" href="#ablation">Ablation</a>
+        <a class="section-link" href="#bibtex">Citation</a>
+      </div>
+    </div>
+  </nav>
+  <main>
+    <figure class="teaser wide-content">
+      <div class="image-frame">
+        <img src="images/gallery.png" width="2542" height="1261" alt="Pairs of engineering drawings and the corresponding parametric CAD models" fetchpriority="high">
+      </div>
+    </figure>
+    <section class="abstract-section" id="abstract" aria-labelledby="abstract-title">
+      <div class="text-content">
+        <h2 id="abstract-title">Abstract</h2>
+        <p>Engineering drawings and parametric CAD models constitute complementary carriers of product knowledge across the engineering lifecycle. While drawings encode projection-based geometric information, parametric CAD models preserve editable construction logic, feature dependencies, and modeling histories. Transforming two-dimensional drawings into such models is therefore not merely a geometric reconstruction task, but an engineering information conversion problem that links legacy documentation with digital design, analysis, and manufacturing workflows. Existing drawing-driven approaches commonly formulate this task as direct sequence translation, which limits their ability to organize complementary multi-view information, represent geometry-dependent local operations, and maintain consistency across the construction process. This paper presents VPlanCAD, a view-aware and planning-guided framework for <strong>editable parametric CAD reconstruction</strong>. Rather than collapsing all views into a single undifferentiated sequence, VPlanCAD retains view-specific semantics and integrates complementary geometric cues through <strong>view-wise aggregation</strong> and <strong>cross-view interaction</strong>. The fused representation is then transformed into a <strong>command-level construction plan</strong> that guides the joint prediction of CAD operations, target entities, and parameters, allowing basic modeling steps and local boundary refinements to be organized within a <strong>coherent executable history</strong>. A unified learning objective couples planning, command, and parameter prediction. Experiments under single- and multi-view settings show that VPlanCAD improves reconstruction accuracy, sequence validity, model executability, and geometric fidelity over representative baselines.</p>
+      </div>
+    </section>
+    <section class="content-section content-width" id="introduction" aria-labelledby="introduction-title">
+      <h2 id="introduction-title">Introduction</h2>
+      <p>In this work, we propose VPlanCAD, a planning-aware multi-view framework for generating editable parametric CAD histories from vector engineering drawings. The framework formulates CAD generation as a structured transformation jointly constrained by multi-view geometric information and dependencies among modeling operations.</p>
+      <p>The first video shows a gallery of CAD model results generated using our method, along with the input engineering drawings and the ground truth.</p>
+      <figure class="video-figure">
+        <video autoplay muted loop playsinline preload="auto" aria-label="Gallery of reconstructed CAD models">
+          <source src="media/results-display-web.mp4?v=2" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </figure>
+      <p>The second video walks through the method itself, from the input drawings to the generated construction history.</p>
+      <figure class="video-figure">
+        <video controls playsinline preload="metadata" poster="images/framework-poster.jpg" aria-label="VPlanCAD method walkthrough (4 minutes)">
+          <source src="media/vplancad-framework-web.mp4?v=2" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </figure>
+      <p>The VPlanCAD pipeline: per-view SVG tokens are aggregated into view-level representations, cross-view interaction fuses the complementary projections, and a command planner conditions the operation and parameter decoders.</p>
+    </section>
+    <section class="content-section content-width results" id="results" aria-labelledby="results-title">
+      <h2 id="results-title">Results</h2>
+      <p>VPlanCAD is compared with the extended CAD sequence generation baselines under the 1×, 3×, and 4× input configurations, covering CAD sequence prediction, execution validity, and geometric similarity. Every model below can be dragged to orbit it; double-click returns to the default view.</p>
+      <figure class="research-figure study" id="study-1x">
+        <h3>1× input</h3>
+        <p class="study-note">Case 00253067 · single isometric view</p>
+        <div class="study-inputs is-one">
+          <div class="input-tile">
+            <img src="result/1x_2/svg/00253067_iso.svg" alt="Isometric engineering drawing input for case 00253067" loading="lazy">
+            <span>Isometric</span>
+          </div>
+        </div>
+        <div class="method-grid">
+          <div class="method-cell">
+            <div class="method-label">DeepCAD</div>
+            <div class="obj-viewer" data-obj="result/1x_2/00253067_deepcad.obj">
+              <img class="viewer-still" src="images/models/1x_2-00253067_deepcad.png" alt="DeepCAD reconstruction of case 00253067" width="640" height="640" loading="lazy" decoding="async">
+            </div>
+          </div>
+          <div class="method-cell">
+            <div class="method-label">Drawing2CAD</div>
+            <div class="obj-viewer" data-obj="result/1x_2/00253067_drawing2cad.obj">
+              <img class="viewer-still" src="images/models/1x_2-00253067_drawing2cad.png" alt="Drawing2CAD reconstruction of case 00253067" width="640" height="640" loading="lazy" decoding="async">
+            </div>
+          </div>
+          <div class="method-cell is-ours">
+            <div class="method-label">Ours</div>
+            <div class="obj-viewer" data-obj="result/1x_2/00253067_ours.obj">
+              <img class="viewer-still" src="images/models/1x_2-00253067_ours.png" alt="VPlanCAD reconstruction of case 00253067" width="640" height="640" loading="lazy" decoding="async">
+            </div>
+          </div>
+          <div class="method-cell">
+            <div class="method-label">Ground truth</div>
+            <div class="obj-viewer" data-obj="result/1x_2/00253067_gt.obj">
+              <img class="viewer-still" src="images/models/1x_2-00253067_gt.png" alt="Ground-truth model of case 00253067" width="640" height="640" loading="lazy" decoding="async">
+            </div>
+          </div>
+        </div>
+        <figcaption>Single-view setting: the isometric drawing is the only input. The side slot and the stepped corner are where the reconstructions visibly diverge.</figcaption>
+      </figure>
+      <figure class="research-figure study" id="study-3x">
+        <h3>3× input</h3>
+        <p class="study-note">Case 00017114 · front, right, and top views</p>
+        <div class="study-inputs is-three">
+          <div class="input-tile">
+            <img src="result/3x_1/svg/00017114_front.svg" alt="Front-view engineering drawing input for case 00017114" loading="lazy">
+            <span>Front</span>
+          </div>
+          <div class="input-tile">
+            <img src="result/3x_1/svg/00017114_right.svg" alt="Right-view engineering drawing input for case 00017114" loading="lazy">
+            <span>Right</span>
+          </div>
+          <div class="input-tile">
+            <img src="result/3x_1/svg/00017114_top.svg" alt="Top-view engineering drawing input for case 00017114" loading="lazy">
+            <span>Top</span>
+          </div>
+        </div>
+        <div class="method-grid">
+          <div class="method-cell">
+            <div class="method-label">DeepCAD</div>
+            <div class="obj-viewer" data-obj="result/3x_1/00017114_deepcad.obj">
+              <img class="viewer-still" src="images/models/3x_1-00017114_deepcad.png" alt="DeepCAD reconstruction of case 00017114" width="640" height="640" loading="lazy" decoding="async">
+            </div>
+          </div>
+          <div class="method-cell">
+            <div class="method-label">Drawing2CAD</div>
+            <div class="obj-viewer" data-obj="result/3x_1/00017114_drawing2cad.obj">
+              <img class="viewer-still" src="images/models/3x_1-00017114_drawing2cad.png" alt="Drawing2CAD reconstruction of case 00017114" width="640" height="640" loading="lazy" decoding="async">
+            </div>
+          </div>
+          <div class="method-cell is-ours">
+            <div class="method-label">Ours</div>
+            <div class="obj-viewer" data-obj="result/3x_1/00017114_ours.obj">
+              <img class="viewer-still" src="images/models/3x_1-00017114_ours.png" alt="VPlanCAD reconstruction of case 00017114" width="640" height="640" loading="lazy" decoding="async">
+            </div>
+          </div>
+          <div class="method-cell">
+            <div class="method-label">Ground truth</div>
+            <div class="obj-viewer" data-obj="result/3x_1/00017114_gt.obj">
+              <img class="viewer-still" src="images/models/3x_1-00017114_gt.png" alt="Ground-truth model of case 00017114" width="640" height="640" loading="lazy" decoding="async">
+            </div>
+          </div>
+        </div>
+        <figcaption>Three-view setting: every method receives the same front, right, and top drawings. A Photo2CAD output for this case was not available, so that column is not shown.</figcaption>
+      </figure>
+      <figure class="research-figure study" id="study-4x">
+        <h3>4× input</h3>
+        <p class="study-note">Case 00289001 · front, right, top, and isometric views</p>
+        <div class="study-inputs is-four">
+          <div class="input-tile">
+            <img src="result/4x_1/svg/00289001_front.svg" alt="Front-view engineering drawing input for case 00289001" loading="lazy">
+            <span>Front</span>
+          </div>
+          <div class="input-tile">
+            <img src="result/4x_1/svg/00289001_right.svg" alt="Right-view engineering drawing input for case 00289001" loading="lazy">
+            <span>Right</span>
+          </div>
+          <div class="input-tile">
+            <img src="result/4x_1/svg/00289001_top.svg" alt="Top-view engineering drawing input for case 00289001" loading="lazy">
+            <span>Top</span>
+          </div>
+          <div class="input-tile">
+            <img src="result/4x_1/svg/00289001_iso.svg" alt="Isometric engineering drawing input for case 00289001" loading="lazy">
+            <span>Isometric</span>
+          </div>
+        </div>
+        <div class="method-grid">
+          <div class="method-cell">
+            <div class="method-label">DeepCAD</div>
+            <div class="obj-viewer" data-obj="result/4x_1/00289001_deepcad.obj">
+              <img class="viewer-still" src="images/models/4x_1-00289001_deepcad.png" alt="DeepCAD reconstruction of case 00289001" width="640" height="640" loading="lazy" decoding="async">
+            </div>
+          </div>
+          <div class="method-cell">
+            <div class="method-label">Drawing2CAD</div>
+            <div class="obj-viewer" data-obj="result/4x_1/00289001_drawing2cad.obj">
+              <img class="viewer-still" src="images/models/4x_1-00289001_drawing2cad.png" alt="Drawing2CAD reconstruction of case 00289001" width="640" height="640" loading="lazy" decoding="async">
+            </div>
+          </div>
+          <div class="method-cell is-ours">
+            <div class="method-label">Ours</div>
+            <div class="obj-viewer" data-obj="result/4x_1/00289001_ours.obj">
+              <img class="viewer-still" src="images/models/4x_1-00289001_ours.png" alt="VPlanCAD reconstruction of case 00289001" width="640" height="640" loading="lazy" decoding="async">
+            </div>
+          </div>
+          <div class="method-cell">
+            <div class="method-label">Ground truth</div>
+            <div class="obj-viewer" data-obj="result/4x_1/00289001_gt.obj">
+              <img class="viewer-still" src="images/models/4x_1-00289001_gt.png" alt="Ground-truth model of case 00289001" width="640" height="640" loading="lazy" decoding="async">
+            </div>
+          </div>
+        </div>
+        <figcaption>Four-view setting: the isometric drawing is added on top of the three orthographic views.</figcaption>
+      </figure>
+    </section>
+    <section class="content-section content-width" id="ablation" aria-labelledby="ablation-title">
+      <h2 id="ablation-title">Ablation</h2>
+      <p>The ablation analysis examines the two principal components of VPlanCAD at the representation and generation levels. The first study investigates how view-wise aggregation and explicit cross-view interaction affect the integration of complementary projection information. The second study evaluates whether command planning improves the organization of the CAD history and its guidance of command and parameter prediction.</p>
+      <h3 class="ablation-title">Cross-view fusion</h3>
+      <figure class="research-figure">
+        <div class="image-frame">
+          <img src="images/ablation-cross-view-fusion.png" width="2276" height="1638" alt="Cross-view fusion ablation comparing global pooling, view-wise pooling, and ground truth on two cases" loading="lazy">
+        </div>
+        <figcaption><strong>Cross-view fusion ablation.</strong> Two cases compare global pooling, view-wise pooling, and the ground truth; the dashed insets magnify the local geometry of the bore and the stepped end.</figcaption>
+      </figure>
+      <h3 class="ablation-title">Command planning</h3>
+      <figure class="research-figure">
+        <div class="image-frame">
+          <img src="images/ablation-command-planning.png" width="2071" height="1690" alt="Command planning ablation comparing models without and with command planning against ground truth on two cases" loading="lazy">
+        </div>
+        <figcaption><strong>Command planner ablation.</strong> Two cases compare the model without command planning, the model with command planning, and the ground truth; the dashed insets magnify the hole and corner regions.</figcaption>
+      </figure>
+    </section>
+    <section class="citation-section" id="bibtex" aria-labelledby="citation-title">
+      <div class="text-content">
+        <h2 id="citation-title">Citation</h2>
+        <p>If our work is helpful to you, please cite it:</p>
+        <pre><code>BibTeX entry to be added once the paper is publicly available.</code></pre>
+      </div>
+    </section>
+  </main>
+  <footer><p>© 2026 LinXin. All rights reserved.</p></footer>
+  <script>
+    // The gallery clip is short, muted and looped. Chrome defers its autoplay until it
+    // scrolls into view; other engines do not always honour that, and a restored tab can
+    // come back paused. Start it while visible, stop it once it is out of sight.
+    (() => {
+      const clip = document.querySelector('#introduction video[autoplay]');
+      if (!clip || !('IntersectionObserver' in window)) return;
+      new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) clip.play().catch(() => {});
+          else if (!clip.paused) clip.pause();
+        });
+      }, { threshold: 0.35 }).observe(clip);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="200" height="200"
+     viewBox="0 0 200 200"
+     style="background:transparent">
+  <defs/>
+  <path d="M 135.23,53.28 L 64.77,53.28 C 64.77,53.28 64.77,54.04 64.77,55.40 C 64.77,56.75 64.77,58.60 64.77,60.51" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 135.23,53.28 C 135.23,53.28 135.23,54.04 135.23,55.40 C 135.23,56.75 135.23,58.60 135.23,60.51" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 135.23,53.28 C 135.23,53.28 135.23,56.52 135.23,60.51" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 64.77,60.51 L 135.23,60.51" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 64.77,60.51 L 64.77,111.12" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 135.23,60.51 L 135.23,111.12" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 64.77,63.66 C 64.77,63.66 64.77,74.28 64.77,87.39" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 135.23,63.66 C 135.23,63.66 135.23,74.28 135.23,87.39 C 135.23,100.50 135.23,111.12 135.23,111.12" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 64.77,109.96 C 64.77,110.73 64.77,111.12 64.77,111.12" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 64.77,111.12 L 135.23,111.12" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 64.77,111.12 C 64.77,117.45 64.77,122.76 64.77,122.99" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 135.23,111.12 C 135.23,114.23 135.23,117.25 135.23,119.49 C 135.23,121.73 135.23,123.00 135.23,123.00" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 135.23,111.12 C 135.23,117.45 135.23,122.76 135.23,122.99" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 64.77,122.99 C 64.77,122.99 64.77,123.75 64.77,125.11 C 64.77,126.47 64.77,128.31 64.77,130.23" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 64.77,122.99 L 135.23,122.99" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 135.23,122.99 C 135.23,123.00 135.23,123.00 135.23,123.00" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 135.23,122.99 C 135.23,122.99 135.23,123.75 135.23,125.11 C 135.23,126.47 135.23,128.31 135.23,130.23" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 64.77,130.23 L 135.23,130.23" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 64.77,130.23 L 64.77,139.49" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 135.23,130.23 L 135.23,139.49" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 64.77,139.49 C 64.77,143.48 64.77,146.72 64.77,146.72 L 135.23,146.72 C 135.23,146.72 135.23,143.48 135.23,139.49" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 64.77,139.49 L 135.23,139.49" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

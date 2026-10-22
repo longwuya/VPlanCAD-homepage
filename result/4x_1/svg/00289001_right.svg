@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="200" height="200"
+     viewBox="0 0 200 200"
+     style="background:transparent">
+  <defs/>
+  <path d="M 95.39,85.88 C 95.21,86.06 95.10,86.31 95.10,86.57" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 95.10,86.57 C 95.10,86.57 95.10,89.13 95.10,93.28 C 95.10,97.44 95.10,102.56 95.10,106.72 C 95.10,110.87 95.10,113.43 95.10,113.43 C 95.10,113.97 95.54,114.40 96.07,114.40" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 96.07,85.60 C 95.82,85.60 95.57,85.70 95.39,85.88" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 96.07,85.60 C 96.07,85.60 96.07,88.34 96.07,92.80 C 96.07,97.26 96.07,102.74 96.07,107.20 C 96.07,111.66 96.07,114.40 96.07,114.40" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 96.07,85.60 L 103.93,85.60" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 103.93,85.60 C 103.93,85.60 103.93,88.34 103.93,92.80 C 103.93,97.26 103.93,102.74 103.93,107.20 C 103.93,111.66 103.93,114.40 103.93,114.40" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 103.93,85.60 C 104.46,85.60 104.90,86.03 104.90,86.57" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 104.90,86.57 C 104.90,86.57 104.90,89.13 104.90,93.28" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 104.90,86.57 C 104.90,86.57 104.90,92.58 104.90,100.00" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 104.90,92.86 L 104.90,105.77 C 104.90,105.77 104.90,102.88 104.90,99.31 C 104.90,95.75 104.90,92.86 104.90,92.86" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 104.90,91.49 L 104.90,108.51 C 104.90,108.51 104.90,104.70 104.90,100.00 C 104.90,95.30 104.90,91.49 104.90,91.49" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 104.90,93.28 C 104.90,97.44 104.90,102.56 104.90,106.72 C 104.90,110.87 104.90,113.43 104.90,113.43" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 104.90,100.00 C 104.90,107.42 104.90,113.43 104.90,113.43" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 96.07,114.40 L 103.93,114.40" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 103.93,114.40 C 104.18,114.40 104.43,114.30 104.61,114.12 C 104.79,113.94 104.90,113.69 104.90,113.43" fill="none" stroke="black" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
