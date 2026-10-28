@@ -1,18 +1,4 @@
-﻿// Animate once as each figure enters the viewport. Content remains visible if
-// observers are unavailable or animations are disabled.
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-if ('IntersectionObserver' in window && !reducedMotion.matches) {
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('figure-entering');
-      entry.target.addEventListener('animationend', () =>
-        entry.target.classList.remove('figure-entering'), { once: true });
-      observer.unobserve(entry.target);
-    });
-  }, { threshold: .06, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.teaser, .research-figure').forEach(figure => observer.observe(figure));
-}
 
 // Sticky section navigation keeps normal anchor links and browser history.
 const navigation = document.querySelector('.site-nav');
